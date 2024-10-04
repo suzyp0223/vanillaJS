@@ -1,5 +1,13 @@
+import displayUser from "./utils/displayUser.js";
 import getUser from "./utils/fetchUser.js";
 
-getUser();
+const showUser = async () => {
+  const person = await getUser();
 
-window.addEventListener('DOMContentLoaded', getUser);
+  displayUser(person);
+
+}
+
+
+
+window.addEventListener('DOMContentLoaded', showUser);
