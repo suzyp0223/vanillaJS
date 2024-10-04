@@ -11,6 +11,7 @@ const displayUser = (person) => {
   userImage.src = person.image;
   value.textContent = person.name;
   title.textContent = 'My name is';
+  removeActive(btns);
 
   btns.forEach((btn) => {
   const label = btn.dataset.label;
