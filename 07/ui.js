@@ -1,6 +1,6 @@
 export class UI {
 
-  addProduct(product) {
+  addProduct(product) { 
     const productList = document.getElementById('product-list');
     const element = document.createElement('div');
 
