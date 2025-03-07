@@ -3,14 +3,15 @@ import { formatPrice, getElement } from "../utils.js";
 const cartItemsEl = getElement(".cart-items");
 
 const addToCartDOM = ({ id, name, price, image, amount }) => {
+  // console.log("카트에 추가되는 상품 데이터:", id, name, price, image, amount); // 추가된 상품 데이터 확인
   const articleEl = document.createElement("article");
   articleEl.classList.add("cart-item");
   articleEl.setAttribute("data-id", id);
   articleEl.innerHTML = `
     <img src="${image}" class="cart-item-img" alt="${name}" />
     <div>
-      <h4 class="cart-item-name">${name}</h4>
-      <p class="cart-item-price">${formatPrice(price)}</p>
+      <h4 class="cart-item-name">"${name}"</h4>
+      <p class="cart-item-price">"${formatPrice(price)}"</p>
       <button class="cart-item-remove-btn" data-id="${id}">remove</button>
     </div>
 
@@ -18,7 +19,7 @@ const addToCartDOM = ({ id, name, price, image, amount }) => {
       <button class="cart-item-increase-btn" data-id="${id}">
         <i class="fas fa-chevron-up"></i>
       </button>
-      <p class="cart-item-amount" data-id="${id}">${amount}</p>
+      <p class="cart-item-amount" data-id="${id}">"${amount}"</p>
       <button class="cart-item-decrease-btn" data-id="${id}">
         <i class="fas fa-chevron-down"></i>
       </button>
