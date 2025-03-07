@@ -1,6 +1,12 @@
 import { findProduct } from "../store.js";
-import { formatPrice, getElement } from "../utils.js";
+import {
+  formatPrice,
+  getElement,
+  setStorageItem,
+  getStorageItem,
+} from "../utils.js";
 import addToCartDOM from "./addToCartDom.js";
+import { openCart } from "./toggleCart.js";
 
 const cartItemCountEl = getElement(".cart-item-count");
 const cartItemsEl = getElement(".cart-items");
@@ -29,7 +35,21 @@ export const addToCart = (id) => {
     const itemEl = items.find((value) => value.dataset.id === id);
     itemEl.textContent = amount;
   }
+
+  displayCartItemCount();
+
+  displayCartTotal();
+
+  setStorageItem("cart", cart);
+
+  openCart();
 };
+
+function displayCartItemsDOM() {
+  cart.forEach((cartItem) => {
+    addToCartDOM(cartItem);
+  });
+}
 
 function displayCartItemCount() {
   const amount = cart.reduce((acc, curr) => {
@@ -47,8 +67,7 @@ function displayCartTotal() {
 }
 
 function removeItem(id) {
- cart = cart.filter((cartItem) => cartItem.id !== id);
-
+  cart = cart.filter((cartItem) => cartItem.id !== id);
 }
 
 function increaseAmount(id) {
@@ -65,22 +84,21 @@ function increaseAmount(id) {
   return newAmount;
 }
 
-
 function decreaseAmount(id) {
   let newAmount;
 
   cart = cart.map((cartItem) => {
-    if(cartItem.id ===id) {
+    if (cartItem.id === id) {
       newAmount = cartItem.amount - 1;
-      cartItem = {...cartItem, amount: newAmount}
+      cartItem = { ...cartItem, amount: newAmount };
     }
     return cartItem;
-  })
+  });
   return newAmount;
 }
 
 function setupCartFunctionality() {
-  cartItemsEl.addEventListener('click', (e) => {
+  cartItemsEl.addEventListener("click", (e) => {
     const element = e.target;
     const parent = e.target.parentElement;
     const id = e.target.dataset.id;
@@ -93,12 +111,12 @@ function setupCartFunctionality() {
       element.parentElement.parentElement.remove();
     }
     // increase
-    if (parent.classList.contains('cart-item-increase-btn')) {
+    if (parent.classList.contains("cart-item-increase-btn")) {
       const newAmount = increaseAmount(parentID);
       parent.nextElementSibling.textContent = newAmount;
     }
     // decrease
-    if (parent.classList.contains('cart-item-decrease-btn' )){
+    if (parent.classList.contains("cart-item-decrease-btn")) {
       const newAmount = decreaseAmount(parentID);
       if (newAmount === 0) {
         removeItem(parentID);
@@ -107,5 +125,20 @@ function setupCartFunctionality() {
         parent.previousElementSibling.textContent = newAmount;
       }
     }
-  })
+    displayCartItemCount();
+    displayCartTotal();
+    setStorageItem("cart", cart);
+  });
 }
+
+const init = () => {
+  displayCartItemCount();
+
+  displayCartTotal();
+
+  setupCartFunctionality();
+
+  displayCartItemsDOM();
+};
+
+init();

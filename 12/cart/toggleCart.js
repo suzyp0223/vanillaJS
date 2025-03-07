@@ -6,12 +6,12 @@ const toggleCartBtn = getElement('.toggle-cart');
 
 toggleCartBtn.addEventListener('click', () => {
   cartOverlay.classList.add('show');
-})
+});
 
-toggleCartBtn.addEventListener('click', () => {
-  cartOverlay.classList.remove('show');
-})
+closeCartBtn.addEventListener("click", () => {
+  cartOverlay.classList.remove("show");
+});
 
 export const openCart = () => {
   cartOverlay.classList.add('show');
-}
+};
