@@ -1,6 +1,5 @@
-import { getElement } from "../utils.js";
 import display from "../displayProducts.js";
-import { addToCart } from "../cart/setupCart.js";
+import { getElement } from "../utils.js";
 
 const setupSearch = (store) => {
   const form = getElement(".input-form");

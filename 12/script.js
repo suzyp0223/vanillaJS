@@ -1,10 +1,10 @@
-import display from "./displayProducts.js";
-import fetchProducts from "./fetchProducts.js";
-import { setupStore } from "./store.js";
-import { getElement } from "./utils.js";
+import display from "./src/displayProducts.js";
+import fetchProducts from "./src/fetchProducts.js";
+import { setupStore } from "./src/store.js";
+import { getElement } from "./src/utils.js";
 
-import './toggleSidebar.js';
-import './cart/toggleCart.js';
+import './src/toggleSidebar.js';
+import './src/cart/toggleCart.js';
 
 
 const init = async () => {

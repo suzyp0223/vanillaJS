@@ -14,7 +14,6 @@ const getElement = (selection) => {
   throw new Error("해당 요소가 존재하지 않습니다.");
 };
 
-// 카트상품 로컬스토리지
 const getStorageItem = (key) => {
   let storageItem = localStorage.getItem(key);
   if (storageItem) {
@@ -29,4 +28,4 @@ const setStorageItem = (name, item) => {
   localStorage.setItem(name, JSON.stringify(item));
 };
 
-export { productsUrl, setStorageItem, formatPrice, getElement, getStorageItem };
+export { getStorageItem, getElement, productsUrl, setStorageItem, formatPrice };
