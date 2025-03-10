@@ -1,7 +1,8 @@
 import { getElement } from "../utils.js";
-import { setupStore } from "../store.js";
+import { setupStore, store } from "../store.js";
 import fetchProducts from "../fetchProducts.js";
 import display from "../displayProducts.js";
+import setupSearch from "../filters/search.js";
 
 const init = async () => {
   const loadingEl = getElement(".page-loading");
@@ -11,7 +12,9 @@ const init = async () => {
   setupStore(products);
 
   // 상품들을 보여주기
-  display(products, getElement(".products-container"));
+  display(store, getElement(".products-container"));
+
+  setupSearch(store);
 
   loadingEl.style.display = "none";
 };

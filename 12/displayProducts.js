@@ -25,6 +25,7 @@ const display = (products, element, filters) => {
     })
     .join("");
 
+  // 이벤트리스너 중복 등록 막음.
   if (filters) return;
 
   element.addEventListener("click", (e) => {
